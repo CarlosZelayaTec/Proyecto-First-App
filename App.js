@@ -26,14 +26,14 @@ const AppNavigator = createBottomTabNavigator({
       style: { //Estilo a la barra de navegacion
         backgroundColor: '#667eea',
         height: 55,
-        borderTopLeftRadius: 20,
+        borderTopLeftRadius: 40,
         // backgroundColor: '#764ba2'
       },
       labelStyle: { //Estilo a la fuente de nuestros menus
         fontSize: 13,
         fontWeight: '300',
       },
-      activeTintColor: 'blue', // Color del texto de la pantalla en ejecucion
+      activeTintColor: '#667eea', // Color del texto de la pantalla en ejecucion
       inactiveTintColor: '#000', //Color de los textos de las pantallas inactivas
   },
   tabBarIcon: ({ focused }) => {
