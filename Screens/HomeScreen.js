@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text } from 'react-native';
 import { Header, Body } from '../Components/index';
-
+import { createStackNavigator } from 'react-navigation-stack';
+ 
 const tiendas = [
   {
     id: '1',
@@ -25,19 +26,21 @@ const tiendas = [
   }
 ]
 
-const { description } = tiendas[2];
-console.log(description.length);
+// const { description } = tiendas[2];
+// console.log(description.length);
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+
+    console.log(navigator);
+
     return (
       <View style={styles.container}>
-          <Header />
-          <Body tiendas={tiendas} />
-        <StatusBar style="auto" />
+          {/* <Header /> */}
+          <Body tiendas={tiendas} onPress={() => navigation.navigate('Perfil')}/>
+        <StatusBar style="auto"/>
       </View>
     );
   }
-
   export default HomeScreen;
 
   const styles = StyleSheet.create({

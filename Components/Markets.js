@@ -1,12 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-const Markets = ({ title, onPress, propietario, description }) => {
+const Markets = ({ title, onPress, propietario }) => {
   return(
     <TouchableOpacity onPress={onPress} style={styles.container} >
+      <View style={styles.containerPhoto}>
+        <Image style={ styles.photoPerfil } source={require('../assets/favicon.png')} />
+      </View> 
       <Text style={styles.title} >{ title }</Text>
       <Text style={styles.propietario} >{ propietario }</Text>
-      <Text style={styles.description} >{ description }</Text>
     </TouchableOpacity>
   )
 }
@@ -19,7 +21,8 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderRadius: 20,
         textAlign: 'center',
-        // backgroundColor: 'red'
+        paddingTop: 8,
+        backgroundColor: '#F4F4F4'
     },
     title: {
       textAlign: 'center',
@@ -31,18 +34,20 @@ const styles = StyleSheet.create({
       fontSize: 14,
       textAlign: 'right',
       color: 'grey',
-      marginRight: 5
+      marginRight: 9,
+      marginTop: 25,
     },
-     description: {
-      fontSize: 10,
-      // color: '',
-      // fontWeight: '300',
-      textAlign: 'justify',
-      marginRight: 5,
+    photoPerfil: {
+      height: 55,
+      width: 55,
+    },
+    containerPhoto: {
+      flex: 1,
+      alignContent: 'center',
       // backgroundColor: 'red',
-      marginLeft: 80,
-      
-     }
+      width: 55,
+      marginLeft: 10,
+    }
 })
 
 export default Markets;

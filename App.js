@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { HomeScreen, RapisScreen, FavoritesScreen , AjustesScreen } from './Screens/index';
 import { StyleSheet, View } from 'react-native';
+import PerfilClienteStack from './Screens/PerfilClienteStack';
 
 const AppNavigator = createBottomTabNavigator({
   Home: {
@@ -71,7 +72,26 @@ const AppNavigator = createBottomTabNavigator({
 }
 )
 
-export default createAppContainer(AppNavigator);
+const AppNavigatorStack = createStackNavigator({
+  Main: AppNavigator,
+  Perfil: {
+    screen: PerfilClienteStack,
+  }
+},{
+  defaultNavigationOptions: ({navigation}) => ({
+    headerStyle: {
+      backgroundColor: '#667eea',
+      borderBottomEndRadius: 40,
+      borderBottomStartRadius: 40,
+    },
+    title: 'Principal',
+    headerTitleStyle: {
+      fontSize: 20
+    }
+  })
+})
+  
+export default createAppContainer(AppNavigatorStack);
 
 const styles = StyleSheet.create({
   centrar: {

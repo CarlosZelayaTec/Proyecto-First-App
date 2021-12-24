@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, FlatList, Text } from 'react-native';
-import { NavigationContext } from 'react-navigation';
+import { StyleSheet, View, FlatList } from 'react-native';
 import  Markets  from './Markets';
 
-const Body = ({ tiendas }) => {
+const Body = ({ tiendas, onPress }) => {
   return(
     <View style={styles.container} >
       <FlatList 
@@ -11,7 +10,7 @@ const Body = ({ tiendas }) => {
         data={tiendas}
         keyExtractor={x => x.id}
         renderItem={({item}) => <Markets title={item.name} description={item.description} propietario={item.propietario}
-         onPress={() => alert(`Hola ${item.name}`)} /> }
+         onPress={onPress} /> }
       />
     </View>
   )
