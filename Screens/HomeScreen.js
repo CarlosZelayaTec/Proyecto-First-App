@@ -14,7 +14,7 @@ const tiendas = [
     id: '2',
     name: 'La quesería y más',
     propietario: 'Mirian Carcamo',
-    description: 'Aqui vendemos productos lacteos y gran variedad de alimentos y productos, esperamos tu visita!!1',  
+    description: 'Aqui vendemos productos lacteos y gran variedad de alimentos y productos, esperamos tu visita!!',  
   },
   {
     id: '3',
@@ -24,6 +24,9 @@ const tiendas = [
   
   }
 ]
+
+const { description } = tiendas[2];
+console.log(description.length);
 
 const HomeScreen = () => {
     return (
