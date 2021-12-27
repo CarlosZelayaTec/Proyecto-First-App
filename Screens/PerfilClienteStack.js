@@ -1,9 +1,8 @@
 import React from 'react';
 import { Text, StyleSheet, View, Image, FlatList } from 'react-native';
+import ListaProductos from '../Components/ListaProductos';
 
 const PerfilClienteStack = ({ navigation }) => {
-
-    // const tiendas = navigation.getParam('tiendas');
 
     const id_tienda = navigation.getParam('id_tienda');
     const title = navigation.getParam('title');
@@ -19,19 +18,15 @@ const PerfilClienteStack = ({ navigation }) => {
                     <Text style={styles.descripcion}>{description}</Text>
                 </View>    
 
-                <View style={styles.containerProducts}>         
+                {/* <View style={styles.containerProducts}>          */}
                     <FlatList 
+                    style={styles.containerProducts}
                         data={productos}
                         keyExtractor={x => x.id_produc}
-                        renderItem={({item}) => {
-                            return(
-                                <View style={styles.forma}>
-                                 <Image style={styles.photosProduc} source={{uri: item.img}} />
-                                </View>
-                            )
-                        }}
+                        renderItem={({item}) => <ListaProductos productos={item.img} title={item.nombreProducto} 
+                                            descripcionProduc={item.descripcionProducto} precio={item.precio} />}
                     />
-                </View>
+                {/* </View> */}
 
         </View>
     )
@@ -66,27 +61,17 @@ const styles = StyleSheet.create({
         color: 'grey',
         textAlign: 'justify',
     },
-    photosProduc: {
-        width: 100,
-        height: 100,
-        borderRadius: 15,
-        margin: 10,
-    },
     containerProducts: {
         flex: 1,
-        flexDirection: 'row',
-        // alignSelf: 'stretch',
-        backgroundColor: '#ccc',
+        alignSelf: 'stretch',
+        backgroundColor: '#667eea',
+        marginHorizontal: 5,
+        marginTop: 5,
+        borderTopRightRadius: 10,
+        borderTopLeftRadius: 10,
+        borderWidth: 1,
+        borderColor: '#000'
     },
-    forma: {
-        flex: 1,
-        flexDirection: 'row',
-        // alignSelf: 'stretch',
-        // width: 120,
-        // height: 120,
-        // backgroundColor: 'red',
-        // alignSelf: 'flex-start'
-    }
 })
 
 export default PerfilClienteStack;
