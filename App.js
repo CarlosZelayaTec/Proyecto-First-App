@@ -18,7 +18,7 @@ const AppNavigator = createBottomTabNavigator({
   },
   Ajustes: {
     screen: AjustesScreen,
-  }
+  },
 }, 
 { 
   initialRouteName: 'Home',
@@ -67,13 +67,13 @@ const AppNavigator = createBottomTabNavigator({
           </View>
         )
 
-  }
+      }
 })
 }
 )
 
 const AppNavigatorStack = createStackNavigator({
-  Main: AppNavigator,
+  Principal: AppNavigator,
   Perfil: {
     screen: PerfilClienteStack,
   }
@@ -84,13 +84,16 @@ const AppNavigatorStack = createStackNavigator({
       borderBottomEndRadius: 40,
       borderBottomStartRadius: 40,
     },
-    title: 'Principal',
+    title: navigation.state.routeName,
     headerTitleStyle: {
       fontSize: 20
-    }
+    },
+    headerBackTitleStyle: {
+      color: '#fff'
+    } 
   })
 })
-  
+
 export default createAppContainer(AppNavigatorStack);
 
 const styles = StyleSheet.create({

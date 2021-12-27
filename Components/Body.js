@@ -2,15 +2,18 @@ import React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import  Markets  from './Markets';
 
-const Body = ({ tiendas, onPress }) => {
+const Body = ({ tiendas, navigation }) => {
+
+  
+
   return(
     <View style={styles.container} >
       <FlatList 
-        style={styles.elemento}
         data={tiendas}
         keyExtractor={x => x.id}
-        renderItem={({item}) => <Markets title={item.name} description={item.description} propietario={item.propietario}
-         onPress={onPress} /> }
+        renderItem={({item}) => <Markets tiendas={tiendas} id={item.id} title={item.name} description={item.description} 
+                                          propietario={item.propietario} logo={item.logo} productos={item.productos}
+         navigation={navigation} /> }
       />
     </View>
   )
@@ -25,11 +28,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
       },
       
-    //  elemento: {
-    //     // backgroundColor: 'green',
-    //     flex: 1,
-    //     // margin: 20,
-    //  } 
 })
 
 export default Body;

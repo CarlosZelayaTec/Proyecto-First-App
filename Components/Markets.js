@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-const Markets = ({ title, onPress, propietario }) => {
+const Markets = ({tiendas, id ,title, propietario, logo, navigation, description, productos }) => {
+
   return(
-    <TouchableOpacity onPress={onPress} style={styles.container} >
-      <View style={styles.containerPhoto}>
-        <Image style={ styles.photoPerfil } source={require('../assets/favicon.png')} />
-      </View> 
-      <Text style={styles.title} >{ title }</Text>
-      <Text style={styles.propietario} >{ propietario }</Text>
+    <TouchableOpacity onPress={() => navigation.navigate('Perfil', {tiendas: tiendas, id_tienda: id, title: title, propietario: propietario, logo: logo, description: description, produc: productos })} style={styles.container} >
+        <View style={styles.containerPhoto}>
+          <Image style={ styles.photoPerfil } source={{uri: logo}} />
+        </View> 
+        <Text style={styles.title} >{ title }</Text>
+        <Text style={styles.propietario} >{ propietario }</Text>
     </TouchableOpacity>
   )
 }
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     photoPerfil: {
       height: 55,
       width: 55,
+      borderRadius: 10,
     },
     containerPhoto: {
       flex: 1,
