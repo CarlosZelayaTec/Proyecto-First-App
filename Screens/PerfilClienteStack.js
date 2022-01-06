@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import { Text, StyleSheet, View, Image, FlatList, ActivityIndicator } from 'react-native';
+import React, { useState } from 'react';
+import { Text, StyleSheet, View, Image, FlatList, TouchableOpacity } from 'react-native';
 import ListaProductos from '../Components/ListaProductos';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const PerfilClienteStack = ({ navigation }) => {
 
@@ -13,20 +14,20 @@ const PerfilClienteStack = ({ navigation }) => {
     const productos = navigation.getParam('produc');
     const load = navigation.getParam('load');
 
-    // const fetchLogo = async () => {
-    //     await fetch(logo);
-    //     setLoadLogo(false)
-    // }
+    const headerList = () => {
+        
+        const [icon, setIcon] = useState('favorite-outline');
 
-    // useEffect(() => {
-    //     fetchLogo()
-    // }, [])
+        const changeIcon = () => {
+            if(icon === 'favorite-outline'){
+                setIcon('favorite')
+            }else{
+                setIcon('favorite-outline')
+            }
+        }
 
-    return(
-        <View style={styles.container}>
-            
-                {/* { loadLogo && <ActivityIndicator size={'large'} color={'violet'} style={styles.activity} /> } */}
-            
+        return(
+            <>
             <Image style={ styles.photoPortada } source={{uri: logo}} />
 
                 <View style={styles.info}>
@@ -34,17 +35,29 @@ const PerfilClienteStack = ({ navigation }) => {
                     <Text style={styles.descripcion}>{description}</Text>
                 </View>    
 
-                {/* <View style={styles.containerProducts}>          */}
+                <View style={styles.botonFavs} >
+                    <TouchableOpacity onPress={changeIcon}>
+                        <MaterialIcons name={icon} size={40}/>
+                        {/* <Text>Favoritos</Text> */}
+                    </TouchableOpacity>
+                </View>
+                </>
+        )
+    }
+
+    return(
+        <View style={styles.container}>
+
                     <FlatList 
                     style={styles.containerProducts}
                         data={productos}
                         // numColumns={'2'}
                         keyExtractor={x => x.id_produc}
+                        ListHeaderComponent={headerList}
                         renderItem={({item}) => <ListaProductos productos={item.img} title={item.nombreProducto} 
-                                            descripcionProduc={item.descripcionProducto} precio={item.precio} />}
+                                            descripcionProduc={item.descripcionProducto} precio={item.precio} load={load} />
+                                        }
                     />
-                {/* </View> */}
-
         </View>
     )
 }
@@ -81,19 +94,17 @@ const styles = StyleSheet.create({
     containerProducts: {
         flex: 1,
         alignSelf: 'stretch',
-        backgroundColor: '#667eea',
-        marginHorizontal: 5,
-        marginTop: 5,
         borderTopRightRadius: 10,
         borderTopLeftRadius: 10,
-        borderWidth: 1,
-        borderColor: '#000'
+        // borderWidth: 1,
+        // borderColor: '#000'
     },
-    activity: {
+    botonFavs: {
         // flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-    }
+        alignSelf: 'flex-end',
+        // backgroundColor: 'red',
+        marginRight: 10
+    },
 })
 
 export default PerfilClienteStack;

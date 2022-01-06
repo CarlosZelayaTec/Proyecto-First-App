@@ -1,14 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 
-const Markets = ({tiendas, id ,title, propietario, logo, navigation, description, productos, load, logosTodos}) => {
+const Markets = ({tiendas, id ,title, propietario, logo, navigation, description, productos, load}) => {
 
   return(
     <TouchableOpacity 
-    onPress={() => navigation.navigate('Perfil', {tiendas: tiendas, id_tienda: id, title: title, propietario: propietario, logo: logo, description: description, produc: productos })} 
+    onPress={() => navigation.navigate('Perfil', {tiendas: tiendas, id_tienda: id, title: title, propietario: propietario, logo: logo, description: description, produc: productos, load: load, })} 
     style={styles.container} >
         <View style={styles.containerPhoto}>
-          {/* { load ? <ActivityIndicator size={'small'} color={'violet'} /> : */}
+          { load && <ActivityIndicator size={'small'} color={'violet'} /> }
           <Image style={ styles.photoPerfil } source={{uri: logo}} />
         </View> 
         <Text style={styles.title} >{ title }</Text>

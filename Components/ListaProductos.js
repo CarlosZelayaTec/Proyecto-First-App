@@ -1,32 +1,28 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, ActivityIndicator } from "react-native";
+import { StyleSheet, View, Text, Image, ActivityIndicator, TouchableOpacity } from "react-native";
 
-const ListaProductos = ({productos, precio, descripcionProduc, title}) => {
+const ListaProductos = ({productos, precio, descripcionProduc, title, load}) => {
 
-    // const [ loading, setLoading ] = useState(true);
+    const verProducto = () => {
+        alert('Funcionando');
+    }
 
-    // const fetchProductos = async () => {
-    //     await fetch(productos);
-    //     setLoading(false);
-    // }
-
-    // useEffect(() => {
-    //     fetchProductos();
-    // }, [])
-
-    // console.log(productos)
-
+    const opcionesProducto = () => {
+        alert('Lista de Opciones');
+    }
   return(
-    <View style={styles.container}>
-        <View style={styles.containerProducto}>
-                <Image style={styles.photoProduc} source={{uri: productos}} />
-        <View style={styles.infoProducto}>
-                <Text style={styles.titleProducto} >{title}</Text>
-                <Text style={styles.descripcionProducto} >{descripcionProduc}</Text>
-                <Text style={styles.precioProducto} >{precio}.00$</Text>
-            </View>        
+    <TouchableOpacity onPress={verProducto} onLongPress={opcionesProducto}>
+        <View style={styles.container}>
+            <View style={styles.containerProducto}>
+                    <Image style={styles.photoProduc} source={{uri: productos}} />
+            <View style={styles.infoProducto}>
+                    <Text style={styles.titleProducto} >{title}</Text>
+                    {/* <Text style={styles.descripcionProducto} >{descripcionProduc}</Text> */}
+                    <Text style={styles.precioProducto} >{precio}.00$</Text>
+                </View>        
+            </View>
         </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -48,7 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         margin: 5,
         borderWidth: 1,
-        borderColor: '#000',
+        borderColor: 'grey',
         borderRadius: 12,
         padding: 5
     },

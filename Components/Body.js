@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import  Markets  from './Markets';
 
-const Body = ({ tiendas, navigation, load, logosTodos }) => {
+const Body = ({ tiendas, navigation }) => {
 
   return(
     <View style={styles.container} >
@@ -11,9 +11,8 @@ const Body = ({ tiendas, navigation, load, logosTodos }) => {
         data={tiendas}
         keyExtractor={x => x.id}
         renderItem={({item}) => <Markets tiendas={tiendas} id={item.id} title={item.name} description={item.description} 
-                                          propietario={item.propietario} logo={item.logo} productos={item.productos} load={load}
-                                          logosTodos={logosTodos}
-         navigation={navigation} /> }
+                                          propietario={item.propietario} logo={item.logo} productos={item.productos} navigation={navigation} 
+                                          /> }
       />
     </View>
   )

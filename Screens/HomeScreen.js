@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, View, Text } from 'react-native';
 import { Body } from '../Components/index';
  
-const tiendas = [
+export const tiendas = [
   {
     id: '1',
     name: 'Fashion Shop',
@@ -218,20 +218,6 @@ const renderTienda = (x) => {
 }
 
 const HomeScreen = ({ navigation }) => {
-
-  const [load, setLoad] = useState(true) 
-
-  const falseFetchLoading = async () => {
-    setTimeout(() => {
-      setLoad(false)
-    }, 5000);
-  }
-
-  useEffect(() => {
-    falseFetchLoading()
-  },[])
-
-  console.log(load)
 
   const memo = useMemo(() => {
     return renderTienda(tiendas)
