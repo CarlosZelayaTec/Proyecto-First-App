@@ -1,18 +1,34 @@
-import React from 'react';
-import { Text, StyleSheet, View, Image, FlatList } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { Text, StyleSheet, View, Image, FlatList, ActivityIndicator } from 'react-native';
 import ListaProductos from '../Components/ListaProductos';
 
 const PerfilClienteStack = ({ navigation }) => {
+
+    // const [ loadLogo, setLoadLogo ] = useState(true);
 
     const id_tienda = navigation.getParam('id_tienda');
     const title = navigation.getParam('title');
     const description = navigation.getParam('description');
     const logo = navigation.getParam('logo');
     const productos = navigation.getParam('produc');
+    const load = navigation.getParam('load');
+
+    // const fetchLogo = async () => {
+    //     await fetch(logo);
+    //     setLoadLogo(false)
+    // }
+
+    // useEffect(() => {
+    //     fetchLogo()
+    // }, [])
 
     return(
         <View style={styles.container}>
+            
+                {/* { loadLogo && <ActivityIndicator size={'large'} color={'violet'} style={styles.activity} /> } */}
+            
             <Image style={ styles.photoPortada } source={{uri: logo}} />
+
                 <View style={styles.info}>
                     <Text style={styles.title}>{title}</Text>
                     <Text style={styles.descripcion}>{description}</Text>
@@ -22,6 +38,7 @@ const PerfilClienteStack = ({ navigation }) => {
                     <FlatList 
                     style={styles.containerProducts}
                         data={productos}
+                        // numColumns={'2'}
                         keyExtractor={x => x.id_produc}
                         renderItem={({item}) => <ListaProductos productos={item.img} title={item.nombreProducto} 
                                             descripcionProduc={item.descripcionProducto} precio={item.precio} />}
@@ -72,6 +89,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#000'
     },
+    activity: {
+        // flex: 1,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+    }
 })
 
 export default PerfilClienteStack;

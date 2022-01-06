@@ -1,12 +1,26 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, ActivityIndicator } from "react-native";
 
 const ListaProductos = ({productos, precio, descripcionProduc, title}) => {
+
+    // const [ loading, setLoading ] = useState(true);
+
+    // const fetchProductos = async () => {
+    //     await fetch(productos);
+    //     setLoading(false);
+    // }
+
+    // useEffect(() => {
+    //     fetchProductos();
+    // }, [])
+
+    // console.log(productos)
+
   return(
     <View style={styles.container}>
         <View style={styles.containerProducto}>
-            <Image style={styles.photoProduc} source={{uri: productos}} />
-            <View style={styles.infoProducto}>
+                <Image style={styles.photoProduc} source={{uri: productos}} />
+        <View style={styles.infoProducto}>
                 <Text style={styles.titleProducto} >{title}</Text>
                 <Text style={styles.descripcionProducto} >{descripcionProduc}</Text>
                 <Text style={styles.precioProducto} >{precio}.00$</Text>
@@ -41,7 +55,7 @@ const styles = StyleSheet.create({
     infoProducto: {
         flex: 1,
         // alignItems: 'center',
-        // justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         // backgroundColor: 'red'
     },
     titleProducto: {
